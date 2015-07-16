@@ -34,8 +34,8 @@ private:
 
 class PopenStream : public std::istream {
 public:
-  PopenStream(const char* command)
-    : std::ios(0), std::istream(&stream_buf), stream_buf(command) { }
+  PopenStream(const char* command, size_t buf_size = 256)
+    : std::ios(0), std::istream(&stream_buf), stream_buf(command, buf_size) { }
 
   virtual ~PopenStream() { }
 
