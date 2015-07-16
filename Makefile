@@ -12,7 +12,7 @@ LINKFLAGS  =
 # EVERYTHING PAST HERE SHOULD WORK AUTOMATICALLY
 
 INCLUDES := $(addprefix -I,$(INCLUDES))
-CFLAGS	 += $(INCLUDES)
+CFLAGS	 += $(INCLUDES) -MMD
 
 EXECUTABLES = $(patsubst usage/%.cc,bin/%,$(wildcard usage/*.cc))
 O_FILES = $(patsubst %.cc,build/%.o,$(wildcard src/*.cc))
