@@ -17,8 +17,19 @@ std::string program_path(){
 #endif
 
 
-#ifdef _win32
-// Not implemented yet.
-// When I need it, look at http://stackoverflow.com/questions/2647429
-// Not putting it in here, because I can't test it at the moment.
+#ifdef _WIN32
+
+#include <windows.h>
+
+// Code from http://stackoverflow.com/questions/2647429
+std::string program_path(){
+  HMODULE hModule = GetModuleHandleW(NULL);
+  wchar_t path[MAX_PATH];
+  GetModuleFileNameW(hModule, path, MAX_PATH);
+
+  std::wstring ws(path);
+  std::string exe_path(ws.begin(), ws.end());
+  return exe_path.substr(0, exe_path.find_last_of('\\'));
+}
+
 #endif
